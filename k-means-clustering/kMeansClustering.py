@@ -86,8 +86,8 @@ class KMeansCluster:
 
 
 if __name__ == '__main__':
-    # num_partitions = 4
-    num_partitions = 6
+    num_partitions = 4
+    # num_partitions = 6
     num_observations = 1000
     lowerBound = -10.0
     upperBound = 10.0
@@ -107,7 +107,6 @@ if __name__ == '__main__':
     while algorithm.update():
         algorithm.assign()
 
-    # color_map = ['r', 'g', 'b', 'c']
     color_map = ['r', 'g', 'b', 'c', 'm', 'k']
     for i in range(len(algorithm.clusters)):
         for point in algorithm.clusters[i]:
