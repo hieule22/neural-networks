@@ -127,15 +127,15 @@ public class WindyGridWorld {
             }
         }
 
-        QLearning learner = new QLearning(transitions, rewards, goalState);
-        final int NUM_EPISODES = 8000;
+        TemporalDifferenceLearning sarsa = new Sarsa(transitions, rewards, goalState);
+        final int NUM_EPISODES = 10000;
         for (int episode = 0; episode < NUM_EPISODES; ++episode) {
-            double totalQuality = learner.train(0.10, 0.80);
+            double totalQuality = sarsa.train(0.10, 0.80);
             System.out.printf("%d %f\n", episode, totalQuality);
         }
 
-        System.err.println("Q-LEARNING OUTPUT:");
-        List<Integer> actualActions = learner.generateStrategy(startState);
+        System.err.println("ACTUAL OUTPUT:");
+        List<Integer> actualActions = sarsa.generateStrategy(startState);
         printPath(transitions, rewards, startState, goalState, actualActions);
 
         System.err.println("-----------------------------------------------");
