@@ -127,15 +127,15 @@ public class WindyGridWorld {
             }
         }
 
-        TemporalDifferenceLearning sarsa = new Sarsa(transitions, rewards, goalState);
+        TemporalDifferenceLearning algorithm = new Sarsa(transitions, rewards, goalState);
         final int NUM_EPISODES = 10000;
         for (int episode = 0; episode < NUM_EPISODES; ++episode) {
-            double totalQuality = sarsa.train(0.10, 0.80);
+            double totalQuality = algorithm.train(0.10, 0.80);
             System.out.printf("%d %f\n", episode, totalQuality);
         }
 
         System.err.println("ACTUAL OUTPUT:");
-        List<Integer> actualActions = sarsa.generateStrategy(startState);
+        List<Integer> actualActions = algorithm.generateStrategy(startState);
         printPath(transitions, rewards, startState, goalState, actualActions);
 
         System.err.println("-----------------------------------------------");
